@@ -7,11 +7,23 @@
 		"node": ">=24.0.0"
 	},
 	"scripts": {
-		"start": "if [ -d src/action.ts ]; then node --import tsx/esm src/index.ts; fi",
-		"typecheck": "tsc --noEmit",
-		"build": "if [ -d src/action.ts ]; then esbuild src/action.ts --bundle --platform=node --target=node24 --outfile=dist/index.cjs; fi",
-		"lint": "if [ -d src/action.ts ]; then eslint src/ --ext .ts && prettier --check src/; fi",
-		"lint-fix": "if [ -d src/action.ts ]; then eslint src/ --fix; fi",
-		"format": "if [ -d src/action.ts ]; then prettier --write src/; fi"
+		"build": "echo 'No build step required'"
+	},
+	"keywords": [
+		"github",
+		"actions"
+	],
+	"dependencies": {
+		"@semantic-release/changelog": "^6.0.0",
+		"@semantic-release/git": "^10.0.0",
+		"@semantic-release/npm": "^12.0.0",
+		"conventional-changelog-conventionalcommits": "^8.0.0",
+		"semantic-release": "^24.0.0",
+		"semantic-release-export-data": "^1.0.0"
+	},
+	"devDependencies": {},
+	"overrides": {
+		"picomatch": "^4.0.4",
+		"undici": "^6.23.0"
 	}
 }
