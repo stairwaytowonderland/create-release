@@ -1,0 +1,9 @@
+{
+	"name": "create-release",
+	"version": "0.0.0",
+	"description": "GitHub Workflows to create and publish releases with semantic versioning",
+	"type": "module",
+	"engines": {
+		"node": ">=24.0.0"
+	}
+}
