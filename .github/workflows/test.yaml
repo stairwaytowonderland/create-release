@@ -1,0 +1,22 @@
+name: Test
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Bundle dist/index.cjs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Semantic release
+        id: release
+        uses: stairwaytowonderland/node-semantic-release@main
+        with:
+          build-only: true
+          typecheck: true
