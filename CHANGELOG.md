@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/stairwaytowonderland/create-release/compare/v1.1.0...v1.2.0) (2026-05-12)
+
+### ✨ Features
+
+* updates ([ad5de96](https://github.com/stairwaytowonderland/create-release/commit/ad5de9689a10a6d5ffa23fd0b55bec27c49a58c1))
+
 ## [1.1.0](https://github.com/stairwaytowonderland/create-release/compare/v1.0.0...v1.1.0) (2026-05-12)
 
 ### ✨ Features
