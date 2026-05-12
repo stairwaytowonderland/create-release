@@ -1,6 +1,6 @@
 {
 	"name": "create-release",
-	"version": "1.3.0",
+	"version": "1.4.0",
 	"description": "GitHub Workflows to create and publish releases with semantic versioning",
 	"type": "module",
 	"engines": {
