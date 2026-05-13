@@ -41,7 +41,7 @@ jobs:
         run: |
           if [ -n "${{ secrets.github-token }}" ]; then
             echo "TOKEN=${{ secrets.github-token }}" >> $GITHUB_ENV
-          else
+          elif [ -n "${{ github.event.inputs.secret-token-name }}" ]; then
             echo "TOKEN=${{ secrets[github.event.inputs.secret-token-name] }}" >> $GITHUB_ENV
           fi
 
