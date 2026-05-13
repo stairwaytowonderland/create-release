@@ -39,11 +39,6 @@ jobs:
     steps:
       - name: Set TOKEN env var
         run: |
-          if [ -n "${{ github.event.inputs.secret-token-name }}" ]; then
-            echo "secret_token_name=${{ github.event.inputs.secret-token-name }}" >> $GITHUB_OUTPUT
-          else
-            echo "secret_token_name=${{ env.TOKEN }}" >> $GITHUB_OUTPUT
-          fi
           if [ -n "${{ secrets.github-token }}" ]; then
             echo "TOKEN=${{ secrets.github-token }}" >> $GITHUB_ENV
           else
