@@ -17,7 +17,7 @@ jobs:
 
       - name: Semantic Release
         id: release
-        uses: stairwaytowonderland/node-semantic-release@main
+        uses: stairwaytowonderland/node-semantic-release@v1.2.0
         with:
           build-only: true
           typecheck: true

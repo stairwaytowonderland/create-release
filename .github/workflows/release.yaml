@@ -47,13 +47,13 @@ jobs:
 
       - name: Semantic Release
         id: release
-        uses: stairwaytowonderland/node-semantic-release@main
+        uses: stairwaytowonderland/node-semantic-release@v1.2.0
         with:
           github-token: ${{ env.TOKEN }}
 
       - name: Dispatch Publish Workflow
         if: steps.release.outputs.new-release-published == 'true'
-        uses: stairwaytowonderland/simple-workflow-dispatch@main
+        uses: stairwaytowonderland/simple-workflow-dispatch@v1.2.0
         with:
           workflow: publish.yaml
           tag: ${{ steps.release.outputs.new-release-git-tag }}
