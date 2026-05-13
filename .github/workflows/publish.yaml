@@ -8,6 +8,11 @@ on:
 
   workflow_dispatch:
     inputs:
+      secret-token-name:
+        description: 'Name of the repository secret containing the GitHub Personal Access Token with permissions to create issues (e.g. GH_PAT_CREATE_ISSUE)'
+        required: true
+        type: string
+        default: 'GITHUB_TOKEN'
       tag:
         description: 'Tag to release (e.g. v1.2.3)'
         required: true
@@ -16,6 +21,10 @@ on:
         required: false
 
   workflow_call:
+    secrets:
+      github-token:
+        description: 'GitHub Personal Access Token with repo scope for creating releases.'
+        required: false
     inputs:
       tag:
         type: string
@@ -25,10 +34,9 @@ on:
         type: string
         description: 'Base64-encoded release notes (Markdown)'
         required: false
-    secrets:
-      github-token:
-        description: 'GitHub Personal Access Token with repo scope for creating releases.'
-        required: false
+
+env:
+  TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   publish:
@@ -39,6 +47,19 @@ jobs:
       contents: write
 
     steps:
+      - name: Set TOKEN env var
+        run: |
+          if [ -n "${{ github.event.inputs.secret-token-name }}" ]; then
+            echo "secret_token_name=${{ github.event.inputs.secret-token-name }}" >> $GITHUB_OUTPUT
+          else
+            echo "secret_token_name=${{ env.TOKEN }}" >> $GITHUB_OUTPUT
+          fi
+          if [ -n "${{ secrets.github-token }}" ]; then
+            echo "TOKEN=${{ secrets.github-token }}" >> $GITHUB_ENV
+          else
+            echo "TOKEN=${{ secrets[github.event.inputs.secret-token-name] }}" >> $GITHUB_ENV
+          fi
+
       # Resolve the tag from whichever trigger fired:
       #   push: tags                        → github.ref_name  (e.g. v1.2.3)
       #   workflow_dispatch / workflow_call → inputs.tag
@@ -53,6 +74,7 @@ jobs:
         with:
           ref: ${{ steps.vars.outputs.tag }}
           fetch-depth: 0
+          token: ${{ env.TOKEN }}
 
       - name: Decode Release Notes
         if: inputs.notes-b64 != ''
@@ -74,4 +96,4 @@ jobs:
               --generate-notes
           fi
         env:
-          GH_TOKEN: ${{ secrets.github-token || secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ env.TOKEN }}
