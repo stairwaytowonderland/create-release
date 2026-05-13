@@ -1,3 +1,9 @@
+## [1.9.0](https://github.com/stairwaytowonderland/create-release/compare/v1.8.0...v1.9.0) (2026-05-13)
+
+### ✨ Features
+
+* updates ([f099897](https://github.com/stairwaytowonderland/create-release/commit/f09989700557dde03aeea668cd4ea39f6157084d))
+
 ## [1.8.0](https://github.com/stairwaytowonderland/create-release/compare/v1.7.0...v1.8.0) (2026-05-13)
 
 ### ✨ Features
